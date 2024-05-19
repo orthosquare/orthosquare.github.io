@@ -293,22 +293,22 @@ fn col_strength(partial: &Vec2D<bool>, current_loc: (usize, usize)) -> usize {
 
 Using this code we find the counts for the number of $k\times k$ $(0,1)$-arrays with $1\leq t \leq \lfloor k/2 \rfloor$ ones, at least for all $2 \leq k \leq 8$:
 
-| (k, t)   | Count       | Time elapsed |
-| -------: | ----------: | -----------: |
-| (2, 1)   | 2           |      0.000   |
-| (3, 1)   | 6           |      0.001   |
-| (4, 1)   | 24          |      0.006   |
-| (4, 2)   | 90          |      0.031   |
-| (5, 1)   | 120         |      0.034   |
-| (5, 2)   | 2,040       |      0.785   |
-| (6, 1)   | 720         |      0.236   |
-| (6, 2)   | 67,950      |     34.149   |
-| (6, 3)   | 297,200     |    262.386   |
-| (7, 1)   | 5,040       |      1.619   |
-| (7, 2)   | 3,110,940   |   1519.783   |
-| (7, 3)   | 68,938,800  |  74330.333   |
-| (8, 1)   | 40,320      |     17.610   |
-| (8, 2)   | 187,530,840 | 121685.176   |
+| (k, t)   | Count       | Time elapsed $(\mu s)$ |
+| -------: | ----------: | ---------------------: |
+| (2, 1)   | 2           |      0.000             |
+| (3, 1)   | 6           |      0.001             |
+| (4, 1)   | 24          |      0.006             |
+| (4, 2)   | 90          |      0.031             |
+| (5, 1)   | 120         |      0.034             |
+| (5, 2)   | 2,040       |      0.785             |
+| (6, 1)   | 720         |      0.236             |
+| (6, 2)   | 67,950      |     34.149             |
+| (6, 3)   | 297,200     |    262.386             |
+| (7, 1)   | 5,040       |      1.619             |
+| (7, 2)   | 3,110,940   |   1519.783             |
+| (7, 3)   | 68,938,800  |  74330.333             |
+| (8, 1)   | 40,320      |     17.610             |
+| (8, 2)   | 187,530,840 | 121685.176             |
 
 The first thing you will notice is that $(8,3)$ and $(8,4)$ are missing. At our current stage, these are taking too long to compute and the values don't really add a lot, so let's save them as stretch goals for a later blog post. Moving on, a quick sanity check shows that $(k, 1) = k!$. This makes sense, these arrays are simply the family of permutation matrices. We can also see $(k, 2)$ and $(k, 3)$ match the integer sequences [A001499](https://oeis.org/A001499) and [A001501](https://oeis.org/A001501), respectively. We can be relatively convinced that the code we have seen above is computing the desired values. At current, this is as far as we can get within a reasonable time. There is just not enough juice in our computer to get us any further using the current methods.
 
