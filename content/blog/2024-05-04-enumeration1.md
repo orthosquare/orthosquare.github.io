@@ -4,6 +4,7 @@ template = "blog_page.html"
 author = "Michael Gill"
 tags = ["Latin squares", "Combinatorics", "Designs"]
 draft = false
+date = 2024-05-19
 +++
 
 Combinatorics is concerned with the construction, arrangement, and enumeration of elements in a discrete space. Problems in combinatorics come in two distinct flavours, existential and enumerative. Constructions and arrangements form the backbone of the solutions to the existential questions. Computation, often using a computer or a "thinking machine" as the Duneverse would put it, forms the backbone of enumeration. Using a slight tongue-in-cheek view, the existential problems ask "Is there more than one?" whereas the enumerative problems ask "How many more than one could there possibly be?". All these words boil down to a simple broad idea, combinatorics is the mathematics of counting.
