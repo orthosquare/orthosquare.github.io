@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello, blog! Or why you should care about combinatorial enumeration. - An Orthgonal Square</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+  <link rel="stylesheet" href="https://orthosquare.github.io/assets/css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"><link rel="apple-touch-icon" sizes="180x180" href="https://orthosquare.github.io/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://orthosquare.github.io/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://orthosquare.github.io/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://orthosquare.github.io/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="https://orthosquare.github.io/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff"><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<link rel="stylesheet" href="https://orthosquare.github.io/css/codeblocks.css">
+
+<link rel="canonical" href="https://orthosquare.github.io/blog/enumeration1/" /><link rel="alternate" type="application/atom+xml"
+        title="RSS" href="https://orthosquare.github.io/atom.xml"
+      ><meta name="author" content="Michael Gill"><meta property="article:published_time" content='2024-05-19' /><meta name="generator" content="Zola">
+  <meta property="og:title" content="Hello, blog! Or why you should care about combinatorial enumeration." />
+  <meta property="og:url" content="https://orthosquare.github.io/blog/enumeration1/" /><meta property="og:site_name" content="An Orthgonal Square" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" /><meta name="twitter:creator" content="@orthosq" />
+  
+</head>
+<body>
+  <div class="container-fluid vh-100">
+    <div class="row h-100"><div
+    class="sidebar d-none d-lg-block col-lg-3 col-xl-2 mh-100 p-0 overflow-auto"
+  >
+    <aside class="d-flex flex-column justify-content-between h-100">
+      <div class="d-none d-md-block mb-4 pt-5 px-4 text-center">
+        <div class="sidebar-avatar mb-2 mx-auto border border-3 rounded-circle">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://orthosquare.github.io/images/avatar.jpg"
+      alt="Michael Gill"
+      class="img-fluid"
+    >
+  </a>
+        </div>
+        <div class="mb-1">
+          <a
+            href="https://orthosquare.github.io"
+            class="sidebar-title fs-5 fw-bold text-decoration-none"
+          >
+            An Orthgonal Square
+          </a>
+        </div>
+        <div class="fw-light">
+          Computation and combinatorics
+        </div>
+      </div>
+
+      <div class="sidebar-nav list-group my-auto rounded-0 text-center"><a
+        href="https://orthosquare.github.io/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="Home"
+      >
+        <span class="sidebar-nav-icon bi bi-house d-none fs-4"></span>
+        <span class="sidebar-nav-text d-none d-md-inline">
+          Home
+        </span>
+      </a><a
+        href="https://orthosquare.github.io/blog/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="Blog"
+      >
+        <span class="sidebar-nav-icon bi bi-file-earmark-text d-none fs-4"></span>
+        <span class="sidebar-nav-text d-none d-md-inline">
+          Blog
+        </span>
+      </a><a
+        href="https://orthosquare.github.io/about/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="About"
+      >
+        <span class="sidebar-nav-icon bi bi-file-earmark-person d-none fs-4"></span>
+        <span class="sidebar-nav-text d-none d-md-inline">
+          About
+        </span>
+      </a></div>
+
+      <div class="sidebar-social d-none d-md-block mt-4 pb-4 px-4">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-auto px-2">
+        <a
+          href="mailto:michael.gill1@monash.edu"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='Email'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-envelope-fill"></span>
+        </a>
+      </div><div class="col-auto px-2">
+        <a
+          href="https://github.com/orthosquare"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='GitHub'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-github"></span>
+        </a>
+      </div><div class="col-auto px-2">
+        <a
+          href="https://twitter.com/orthosq"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='Twitter'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-twitter"></span>
+        </a>
+      </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div><div class="col mh-100 overflow-auto px-0"><nav
+    class="navbar navbar-expand navbar-bg-light sticky-top border-bottom"
+  >
+    <div class="container-fluid"><button
+        type="button"
+        class="btn d-block d-lg-none fs-5"
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+        aria-controls="offcanvas"
+      >
+        <span class="bi bi-list"></span>
+      </button>
+      
+      <div class="col-8">
+        
+          <div class="row justify-content-center justify-content-lg-start p-2 ps-xl-3 text-center"><div class="col-auto d-none d-xl-block">
+        <a
+          href="https://orthosquare.github.io/blog/"
+          class="text-decoration-none"
+        >
+          Blog
+        </a>
+      </div>
+      <div class="col-auto d-none d-xl-block">
+        <span class="text-secondary">
+          »
+        </span>
+      </div><div class="col-auto">
+      <span
+        class="d-inline d-sm-none text-secondary"
+        data-bs-toggle="tooltip"
+        data-bs-title="Hello, blog! Or why you should care about combinatorial enumeration."
+      >
+        Hello, blog! Or …
+      </span>
+      <span
+        class="d-none d-sm-inline text-secondary"
+        data-bs-toggle="tooltip"
+        data-bs-title="Hello, blog! Or why you should care about combinatorial enumeration."
+      >
+        Hello, blog! Or why you should care abou…
+      </span>
+    </div>
+  </div>
+        
+      </div>
+
+      <button
+    type="button" data-bs-toggle="modal" data-bs-target="#searchModal"
+    class="btn border border-0"
+  >
+    <span class="bi bi-search fs-5"></span>
+  </button>
+    </div>
+  </nav><div class="d-flex flex-column h-100"><main class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-11 col-lg-10 col-xxl-9">
+        <h1 class="mb-3">
+          Hello, blog! Or why you should care about combinatorial enumeration.
+        </h1>
+        <div class="row mt-3 mb-2">
+          <div class="col-auto">
+            <small class="text-muted">
+              By:
+              <a
+                href="#"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none"
+              >
+                Michael Gill
+              </a>
+            </small>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-auto mb-2">
+            <small class="text-muted">
+              Posted:
+              <time datetime="2024-05-19">
+                <a 
+                  href="#" data-bs-toggle="tooltip"
+                  data-bs-title="Sunday, May 19, 2024 12:00:00 AM UTC"
+                  class="text-muted text-decoration-none"
+                >
+                  May 19, 2024
+                </a>
+              </time>
+            </small>
+          </div>
+          
+        </div><div class="mb-5">
+          <p>Combinatorics is concerned with the construction, arrangement, and enumeration
+of elements in a discrete space. Problems in combinatorics come in two distinct
+flavours, existential and enumerative. Constructions and arrangements form the
+backbone of the solutions to the existential questions. Computation, often using
+a computer or a &quot;thinking machine&quot; as the Duneverse would put it, forms the
+backbone of enumeration. Using a slight tongue-in-cheek view, the existential
+problems ask &quot;Is there more than one?&quot; whereas the enumerative problems ask &quot;How
+many more than one could there possibly be?&quot;. All these words boil down to a
+simple broad idea, combinatorics is the mathematics of counting.</p>
+<p>So at this point, there is only one interesting question, what are we counting?
+Let's start simple. Let $\mathcal{N}$ be the set of natural numbers and $n$ be
+an element from that set, $n\in \mathcal{N}$. We can write $n$ as the sum of
+powers of two, for example, $410 = 2^8 + 2^7 + 2^4 + 2^3 + 2^2$. If we encode
+this idea using a one in position $i$ to represent that the sum contains the
+summand $2^i$ then we might end up with the following equivalence
+$410_{10} = 110011010_{2}$. We should all recognise this as a binary encoding. A
+binary encoding of the integer $n$ is representable in $k$ bits if
+$n \leq 2^{k+1}-1$. How many $k$-bit binary numbers are there with exactly $t$
+ones?</p>
+<p>Let's start by defining the function $c(k,t)$ to be the count of $k$-bit numbers
+with $t$ ones. In later posts, we will discuss what it means for two objects to
+be different, but right now it is sufficient to say that two binary numbers are
+different if there is some position in which they differ. For $t = 1$ it is easy
+to see that $c(k,1) = k$ as you just select one of $k$ bits and set it to $1$
+and there are $k$ ways to this. Now moving our thinking to $t = 2$ we can see
+that after we select one bit and set it to $1$, we have $k-1$ positions from
+which to choose the second bit. This would give $k(k-1)$ choices, however, we
+should note that there is no difference between the first choice and the second
+choice. This means that we have overcounted by a factor of $2$ which gives
+$c(k, 2) = \frac{k(k-1)}{2}$.</p>
+<p>For $c(k,3)$ we have $k$ positions and we select 3 of them in turn. This may
+lead some people to think that $c(k,3) = \frac{k(k-1)(k-2)}{3}$, but you would
+be off by a factor of two again. To find the correct number, let's label our
+choices $(b_1,b_2,b_3)$. As we know, there is no difference between choosing
+$b_2$ before $b_1$. This means that the choice $(b_1,b_2,b_3) = (b_2,b_1,b_3)$
+and so on... If you do this on paper, you quickly find 6 possible ways of
+choosing bits that are all equivalent. We should note that this method of
+choosing bits is simply the way that we chose the first 2 bits with the
+additional insight that we could have chosen the third bit in one of $3$ spots:
+before the first choice, in between the choices, or after the last choice.
+Following this train of reasoning we find
+$c(k,t) = \frac{k(k-1)(k-2)\dots(k-t)}{t!} = \frac{k!}{t!(k-t)!}$. Some of you
+may recognise this as the binomial coefficient $\binom{k}{t}$.</p>
+<p>We have now solved the enumerative problem, or have we? Our solution is slightly
+less than ideal. It is great if you do not care about the objects and only want
+to know how many there are. If you are interested in the structure or properties
+of the objects then you may want to generate the set of them. While the equation
+$c(k,t) = \binom{k}{t}$ may be useful for understanding how many $k$-bit numbers
+have $t$ ones, it doesn't help us generate them (At least not in a way that is
+meaningfully distinct from the way I am about to show you). To do this we need
+to think about the problem in a slightly different way. We now turn our thoughts
+to recursion. If we consider only the most significant bit in a $k$-bit binary
+number then we can consider two possible outcomes. Either the bit is a zero or a
+one. If the bit is a zero, then we can see that the number of $k$-bit numbers
+with $t$ ones is $c(k-1, t)$. If the bit is one, then the number of possible
+configurations is $c(k-1, t-1)$. Combining these equations into a recurrence and
+determining the required base cases we get,</p>
+<p>\begin{align} c(k,t) &amp; = c(k-1, t) + c(k-1, t-1), \\ c(t,t) &amp; = 1, \\
+c(k, 0) &amp; = 1. \end{align}</p>
+<p>So we have seen that we can count the number of $k$-bit binary numbers with $t$
+ones in two different ways. The first way invokes the use of the binomial
+coefficient and gives us an easy-to-compute number of objects, but is not
+actually useful if we would like to find the objects themselves. The second
+solution is less direct and requires us to do some more work to find the
+solution, but it does inform a simple algorithm for generating the set of
+objects. Let's get started with backtracking.</p>
+<h2 id="enumeration-and-backtracking-a-love-affair">Enumeration and backtracking: A love affair</h2>
+<p>Let's make our goal more concrete. The recursive formulation works by
+considering both possible values of the bit $k$ in a $k$-bit number. First, it
+assumes the current bit at position $k$ is a zero and then asks how many
+$(k-1)$-bit numbers exist when this is the case, the term $c(k-1, t)$. It then
+assumes that the current bit, at position $k$, is one and asks how many
+$(k-1)$-bit numbers exist when this is the case, the term $c(k-1, t-1)$. This
+strategy exposes an interesting idea, what if we got it to build the numbers,
+instead of counting them? Instead of asking what happens if the $k$<sup>th</sup>
+bit is one, let's set it to one and then come back and change it later. This is
+the key insight of recursive backtracking, we keep a partial solution and at
+each stage fill a segment of the partial solution in with the intention of
+returning to the partial solution later and updating it to generate a different
+partial solution. We then detect when our partial solution is a real solution,
+using the base cases, and store it for later use. For those of you familiar with
+search algorithms, we are effectively depth-first searching the space of all
+possible solutions.</p>
+<pre class="mermaid">
+graph TD;
+    A(5,3)-->|0|B(4,3);
+    A-->|1|C(4,2);
+    B-->|0|D(3,3);
+    B-->|1|E(3,2);
+    C-->|0|F(3,2);
+    C-->|1|G(3,1);
+    D-->|111|H(00111);
+    E-->|0|I(2,2);
+    E-->|1|J(2,1);
+    F-->|0|K(2,2);
+    F-->|1|L(2,1);
+    G-->|0|M(2,1);
+    G-->|1|N(2,0);
+    I-->|11|O(01011);
+    J-->|0|P(1,1);
+    J-->|1|Q(1,0);
+    K-->|11|R(10011);
+    L-->|0|S(1,1);
+    L-->|1|T(1,0);
+    M-->|0|U(1,1);
+    M-->|1|V(1,0);
+    N-->|00|X(11100);
+    P-->|1|Y(01101);
+    Q-->|0|Z(01110);
+    S-->|1|AA(10101);
+    T-->|0|AB(10110);
+    U-->|1|AC(11001);
+    V-->|0|AD(11010);
+</pre>
+<p>I will be writing and presenting code in <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.rust-lang.org/">Rust</a>. My
+desire to master Rust is a large contributing factor to this blog, so all code
+will be provided in Rust. We should note that while our function allows for
+$k$-bit numbers where $k$ is arbitrarily large, to keep our computation
+relatively simple we will limit ourselves to the number of bits contained in a
+<code>usize</code> and assume that no data of a larger size is given.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">bin_k_t</span><span>(</span><span style="color:#bf616a;">k</span><span>: </span><span style="color:#b48ead;">u32</span><span>, </span><span style="color:#bf616a;">t</span><span>: </span><span style="color:#b48ead;">u32</span><span>, </span><span style="color:#bf616a;">current</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">results</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Vec&lt;</span><span style="color:#b48ead;">usize</span><span>&gt;) {
+</span><span>    </span><span style="color:#65737e;">// Base case 1, we need to put all 1&#39;s in the remainder of the integer.
+</span><span>    </span><span style="color:#b48ead;">if</span><span> k == t {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> mask = </span><span style="color:#b48ead;">usize</span><span>::pow(</span><span style="color:#d08770;">2</span><span>, k+</span><span style="color:#d08770;">1</span><span>) - </span><span style="color:#d08770;">1</span><span>;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> current = current | mask;
+</span><span>
+</span><span>        results.</span><span style="color:#96b5b4;">push</span><span>(current);
+</span><span>    } </span><span style="color:#b48ead;">else if</span><span> t == </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#65737e;">// Base case 2, we take the integer as it is, we are guaranteed that it
+</span><span>    </span><span style="color:#65737e;">// contains k 0&#39;s at the end.
+</span><span>        results.</span><span style="color:#96b5b4;">push</span><span>(current);
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> mask = </span><span style="color:#b48ead;">usize</span><span>::pow(</span><span style="color:#d08770;">2</span><span>, k);
+</span><span>        </span><span style="color:#96b5b4;">bin_k_t</span><span>(k-</span><span style="color:#d08770;">1</span><span>, t, current, results);
+</span><span>        </span><span style="color:#96b5b4;">bin_k_t</span><span>(k-</span><span style="color:#d08770;">1</span><span>, t-</span><span style="color:#d08770;">1</span><span>, current | mask, results);
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">main</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> results: Vec&lt;</span><span style="color:#b48ead;">usize</span><span>&gt; = vec![];
+</span><span>
+</span><span>    </span><span style="color:#96b5b4;">bin_k_t</span><span>(</span><span style="color:#d08770;">10</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">0</span><span>, &amp;</span><span style="color:#b48ead;">mut</span><span> results);
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// There are exactly 10*9*8*7/24 = 10*3*7 = 210 10-bit binary numbers with 4 ones.
+</span><span>    assert_eq!(results.</span><span style="color:#96b5b4;">len</span><span>(), </span><span style="color:#d08770;">210</span><span>);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> val in results {
+</span><span>        println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, val);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<h2 id="harder-problems">Harder problems</h2>
+<p>So far this is a relatively simple example. It shows how to generate a simple
+combinatorial object, but it does not help us understand the full depth of
+techniques to understand combinatorial enumeration. So, let's choose a more
+interesting example. We will think about $k\times k$ $(0,1)$-arrays where each
+row and each column is a $k$-bit binary number containing exactly $t$ ones. The
+natural number $t$ is called the strength of the array, while $k$ is its order.
+If $k = 5$ and $t = 3$, then we might have the following example:</p>
+<p>$$
+\left[
+\begin{array}{ccccc}
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 1
+\end{array}
+\right]
+$$</p>
+<p>It should be obvious at this point that this array is more complicated to
+generate than the $k$-bit binary numbers with $t$ ones. But the process is
+roughly the same. There are several ways to think about this enumeration, but
+let's start with the most obvious. We are going to start with a $(0,1)$-array
+containing only zeros. From this, we will recursively backtrack. For each
+position in a row, we will check if that position could be a one. We will then
+set it to a one in the partial solution and recurse to find all partial
+solutions that have that position fixed. After we return from our recursive call
+we set the bit back to zero and move to the next cell.</p>
+<p>To do this in Rust we will use the <code>Vec&lt;bool&gt;</code> type. This type is similar to the
+bit array type we see in other languages. It is an efficient implementation of a
+vector of bools, storing each boolean value as a singular bit, so it is both a
+space- and time-efficient implementation. As we want a 2-dimensional array we
+will wrap the <code>Vec</code> datastructure in a 2-dimensional list implementation.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">use </span><span>std::ops::{Index, IndexMut};
+</span><span style="color:#b48ead;">use </span><span>std::fmt;
+</span><span>
+</span><span style="color:#b48ead;">pub struct </span><span>Vec2D&lt;T&gt; {
+</span><span>    </span><span style="color:#bf616a;">data</span><span>: Vec&lt;T&gt;,
+</span><span>    </span><span style="color:#bf616a;">n_rows</span><span>: </span><span style="color:#b48ead;">usize</span><span>,
+</span><span>    </span><span style="color:#bf616a;">n_cols</span><span>: </span><span style="color:#b48ead;">usize</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>&lt;T: Default + Clone&gt; Vec2D&lt;T&gt; {
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">new</span><span>(</span><span style="color:#bf616a;">n_rows</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">n_cols</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; Vec2D&lt;T&gt; {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> data = vec![T::default(); n_rows * n_cols];
+</span><span>        Vec2D { data, n_rows, n_cols }
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>&lt;T&gt; Index&lt;(</span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">usize</span><span>)&gt; </span><span style="color:#b48ead;">for </span><span>Vec2D&lt;T&gt; {
+</span><span>    </span><span style="color:#b48ead;">type </span><span>Output = T;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">index</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">index</span><span>: (</span><span style="color:#bf616a;">usize</span><span>, </span><span style="color:#bf616a;">usize</span><span>)) -&gt; &amp;T {
+</span><span>        assert!(index.</span><span style="color:#d08770;">0 </span><span>&lt; </span><span style="color:#bf616a;">self</span><span>.n_rows);
+</span><span>        assert!(index.</span><span style="color:#d08770;">1 </span><span>&lt; </span><span style="color:#bf616a;">self</span><span>.n_cols);
+</span><span>
+</span><span>        &amp;</span><span style="color:#bf616a;">self</span><span>.data[index.</span><span style="color:#d08770;">0 </span><span>* </span><span style="color:#bf616a;">self</span><span>.n_cols + index.</span><span style="color:#d08770;">1</span><span>]
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>&lt;T&gt; IndexMut&lt;(</span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#b48ead;">usize</span><span>)&gt; </span><span style="color:#b48ead;">for </span><span>Vec2D&lt;T&gt; {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">index_mut</span><span>(&amp;</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">index</span><span>: (</span><span style="color:#bf616a;">usize</span><span>, </span><span style="color:#bf616a;">usize</span><span>)) -&gt; &amp;</span><span style="color:#b48ead;">mut</span><span> T {
+</span><span>        assert!(index.</span><span style="color:#d08770;">0 </span><span>&lt; </span><span style="color:#bf616a;">self</span><span>.n_rows);
+</span><span>        assert!(index.</span><span style="color:#d08770;">1 </span><span>&lt; </span><span style="color:#bf616a;">self</span><span>.n_cols);
+</span><span>
+</span><span>        &amp;</span><span style="color:#b48ead;">mut </span><span style="color:#bf616a;">self</span><span>.data[index.</span><span style="color:#d08770;">0 </span><span>* </span><span style="color:#bf616a;">self</span><span>.n_cols + index.</span><span style="color:#d08770;">1</span><span>]
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>&lt;T&gt; fmt::Display </span><span style="color:#b48ead;">for </span><span>Vec2D&lt;T&gt; </span><span style="color:#b48ead;">where</span><span> T: fmt::Display {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">fmt</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">f</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>fmt::Formatter) -&gt; fmt::Result {
+</span><span>        </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#bf616a;">self</span><span>.n_rows {
+</span><span>            </span><span style="color:#b48ead;">for</span><span> j in </span><span style="color:#d08770;">0</span><span>..</span><span style="color:#bf616a;">self</span><span>.n_cols {
+</span><span>                </span><span style="color:#b48ead;">match </span><span>write!(f, &quot;</span><span style="color:#d08770;">{} </span><span>&quot;, </span><span style="color:#bf616a;">self</span><span>[(i, j)]) {
+</span><span>                    Err(e) =&gt; </span><span style="color:#b48ead;">return </span><span>Err(e),
+</span><span>                    _ =&gt; {}
+</span><span>                }
+</span><span>            }
+</span><span>            </span><span style="color:#b48ead;">match </span><span>write!(f, &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;) {
+</span><span>                Err(e) =&gt; </span><span style="color:#b48ead;">return </span><span>Err(e),
+</span><span>                _ =&gt; {}
+</span><span>            }
+</span><span>        }
+</span><span>
+</span><span>        write!(f, &quot;&quot;)
+</span><span>    }
+</span><span>}
+</span><span>
+</span><span>#[</span><span style="color:#bf616a;">cfg</span><span>(test)]
+</span><span style="color:#b48ead;">mod </span><span>tests {
+</span><span>    </span><span style="color:#b48ead;">use super</span><span>::*;
+</span><span>
+</span><span>    #[</span><span style="color:#bf616a;">test</span><span>]
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">let mut</span><span> test = Vec2D::&lt;</span><span style="color:#b48ead;">usize</span><span>&gt;::new(</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>);
+</span><span>
+</span><span>        test[(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>)] = </span><span style="color:#d08770;">1</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>)] = </span><span style="color:#d08770;">2</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">2</span><span>)] = </span><span style="color:#d08770;">3</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>)] = </span><span style="color:#d08770;">4</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">1</span><span>)] = </span><span style="color:#d08770;">5</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>)] = </span><span style="color:#d08770;">6</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">0</span><span>)] = </span><span style="color:#d08770;">7</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>)] = </span><span style="color:#d08770;">8</span><span>;
+</span><span>        test[(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>)] = </span><span style="color:#d08770;">9</span><span>;
+</span><span>
+</span><span>        assert!(test.data == vec![</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>, </span><span style="color:#d08770;">6</span><span>, </span><span style="color:#d08770;">7</span><span>, </span><span style="color:#d08770;">8</span><span>, </span><span style="color:#d08770;">9</span><span>]);
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>We can now enumerate the objects by recursively backtracking over each position
+of a <code>Vec2D</code>.</p>
+<pre data-lang="Rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-Rust "><code class="language-Rust" data-lang="Rust"><span style="color:#b48ead;">mod </span><span>collections;
+</span><span style="color:#b48ead;">use </span><span>collections::vec2d::Vec2D;
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">bin_square</span><span>(</span><span style="color:#bf616a;">dim</span><span>: </span><span style="color:#b48ead;">usize</span><span>, </span><span style="color:#bf616a;">strength</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#65737e;">// We are going to use a helper function to do the recursion as Rust does
+</span><span>    </span><span style="color:#65737e;">// not support overloading functions.
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> partial = Vec2D::new(dim, dim);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let</span><span> agg = </span><span style="color:#96b5b4;">extend_partial</span><span>(dim, strength, &amp;</span><span style="color:#b48ead;">mut</span><span> partial, (</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>));
+</span><span>    </span><span style="color:#b48ead;">return</span><span> agg;
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">extend_partial</span><span>(
+</span><span>    </span><span style="color:#bf616a;">dim</span><span>: </span><span style="color:#b48ead;">usize</span><span>,
+</span><span>    </span><span style="color:#bf616a;">strength</span><span>: </span><span style="color:#b48ead;">usize</span><span>,
+</span><span>    </span><span style="color:#bf616a;">partial</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Vec2D&lt;</span><span style="color:#b48ead;">bool</span><span>&gt;,
+</span><span>    </span><span style="color:#bf616a;">current_loc</span><span>: (</span><span style="color:#bf616a;">usize</span><span>, </span><span style="color:#bf616a;">usize</span><span>),
+</span><span>) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#65737e;">// Determine if we just finished a row. This is required so that we know
+</span><span>    </span><span style="color:#65737e;">// if the previous bit in the row was set correctly. If the previous
+</span><span>    </span><span style="color:#65737e;">// row does not have the desired strength, then we reject this square.
+</span><span>    </span><span style="color:#b48ead;">if</span><span> current_loc.</span><span style="color:#d08770;">0 </span><span>&gt; </span><span style="color:#d08770;">0 </span><span>&amp;&amp; current_loc.</span><span style="color:#d08770;">1 </span><span>== </span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">row_strength</span><span>(partial, (current_loc.</span><span style="color:#d08770;">0 </span><span>- </span><span style="color:#d08770;">1</span><span>, dim)) &lt; strength {
+</span><span>            </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>        }
+</span><span>    </span><span style="color:#65737e;">// The only way for our current row to be the dimension of the square is
+</span><span>    </span><span style="color:#65737e;">// if we have completed a square.
+</span><span>    } </span><span style="color:#b48ead;">else if</span><span> current_loc.</span><span style="color:#d08770;">0 </span><span>== dim {
+</span><span>        </span><span style="color:#65737e;">// If we were interested in the output of this program we would print
+</span><span>        </span><span style="color:#65737e;">// here.
+</span><span>
+</span><span>        </span><span style="color:#65737e;">// println!(&quot;{}&quot;, partial);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">1</span><span>;
+</span><span>    </span><span style="color:#65737e;">// Last base case is an early rejection condition. It checks to make sure
+</span><span>    </span><span style="color:#65737e;">// that there is room left in the square for the current row and column to
+</span><span>    </span><span style="color:#65737e;">// have the desired strength.
+</span><span>    } </span><span style="color:#b48ead;">else if</span><span> strength - </span><span style="color:#96b5b4;">row_strength</span><span>(partial, current_loc) &gt; dim - (current_loc.</span><span style="color:#d08770;">1</span><span>) &amp;&amp;
+</span><span>              strength - </span><span style="color:#96b5b4;">col_strength</span><span>(partial, current_loc) &gt; dim - (current_loc.</span><span style="color:#d08770;">0</span><span>) {
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> agg = </span><span style="color:#d08770;">0</span><span>;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> next_loc = </span><span style="color:#b48ead;">if</span><span> current_loc.</span><span style="color:#d08770;">1 </span><span>== dim - </span><span style="color:#d08770;">1 </span><span>{
+</span><span>        (current_loc.</span><span style="color:#d08770;">0 </span><span>+ </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">0</span><span>)
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        (current_loc.</span><span style="color:#d08770;">0</span><span>, current_loc.</span><span style="color:#d08770;">1 </span><span>+ </span><span style="color:#d08770;">1</span><span>)
+</span><span>    };
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// Compute the row strength and the column strength and decide if there is
+</span><span>    </span><span style="color:#65737e;">// room remaining in the square for the 1
+</span><span>    </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">row_strength</span><span>(partial, current_loc) &lt; strength
+</span><span>        &amp;&amp; </span><span style="color:#96b5b4;">col_strength</span><span>(partial, current_loc) &lt; strength
+</span><span>    {
+</span><span>        partial[current_loc] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>        agg += </span><span style="color:#96b5b4;">extend_partial</span><span>(dim, strength, partial, next_loc);
+</span><span>        partial[current_loc] = </span><span style="color:#d08770;">false</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// We might always be able to extend with a 0. So we do this here.
+</span><span>    agg += </span><span style="color:#96b5b4;">extend_partial</span><span>(dim, strength, partial, next_loc);
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return</span><span> agg;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// We compute the row strength by finding the number of 1&#39;s contained in the
+</span><span style="color:#65737e;">// current row.
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">row_strength</span><span>(</span><span style="color:#bf616a;">partial</span><span>: &amp;Vec2D&lt;</span><span style="color:#b48ead;">bool</span><span>&gt;, </span><span style="color:#bf616a;">current_loc</span><span>: (</span><span style="color:#bf616a;">usize</span><span>, </span><span style="color:#bf616a;">usize</span><span>)) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> strength = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..current_loc.</span><span style="color:#d08770;">1 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> partial[(current_loc.</span><span style="color:#d08770;">0</span><span>, i)] {
+</span><span>            strength += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return</span><span> strength;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;">// We compute the column strength by finding the number of 1&#39;s contained in
+</span><span style="color:#65737e;">// the current column.
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">col_strength</span><span>(</span><span style="color:#bf616a;">partial</span><span>: &amp;Vec2D&lt;</span><span style="color:#b48ead;">bool</span><span>&gt;, </span><span style="color:#bf616a;">current_loc</span><span>: (</span><span style="color:#bf616a;">usize</span><span>, </span><span style="color:#bf616a;">usize</span><span>)) -&gt; </span><span style="color:#b48ead;">usize </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> strength = </span><span style="color:#d08770;">0</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">for</span><span> i in </span><span style="color:#d08770;">0</span><span>..current_loc.</span><span style="color:#d08770;">0 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">if</span><span> partial[(i, current_loc.</span><span style="color:#d08770;">1</span><span>)] {
+</span><span>            strength += </span><span style="color:#d08770;">1</span><span>;
+</span><span>        }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return</span><span> strength;
+</span><span>}
+</span></code></pre>
+<p>Using this code we find the counts for the number of $k\times k$ $(0,1)$-arrays
+with $1\leq t \leq \lfloor k/2 \rfloor$ ones, at least for all
+$2 \leq k \leq 8$:</p>
+<table><thead><tr><th style="text-align: right">(k, t)</th><th style="text-align: right">Count</th><th style="text-align: right">Time elapsed $(\mu s)$</th></tr></thead><tbody>
+<tr><td style="text-align: right">(2, 1)</td><td style="text-align: right">2</td><td style="text-align: right">0.000</td></tr>
+<tr><td style="text-align: right">(3, 1)</td><td style="text-align: right">6</td><td style="text-align: right">0.001</td></tr>
+<tr><td style="text-align: right">(4, 1)</td><td style="text-align: right">24</td><td style="text-align: right">0.006</td></tr>
+<tr><td style="text-align: right">(4, 2)</td><td style="text-align: right">90</td><td style="text-align: right">0.031</td></tr>
+<tr><td style="text-align: right">(5, 1)</td><td style="text-align: right">120</td><td style="text-align: right">0.034</td></tr>
+<tr><td style="text-align: right">(5, 2)</td><td style="text-align: right">2,040</td><td style="text-align: right">0.785</td></tr>
+<tr><td style="text-align: right">(6, 1)</td><td style="text-align: right">720</td><td style="text-align: right">0.236</td></tr>
+<tr><td style="text-align: right">(6, 2)</td><td style="text-align: right">67,950</td><td style="text-align: right">34.149</td></tr>
+<tr><td style="text-align: right">(6, 3)</td><td style="text-align: right">297,200</td><td style="text-align: right">262.386</td></tr>
+<tr><td style="text-align: right">(7, 1)</td><td style="text-align: right">5,040</td><td style="text-align: right">1.619</td></tr>
+<tr><td style="text-align: right">(7, 2)</td><td style="text-align: right">3,110,940</td><td style="text-align: right">1519.783</td></tr>
+<tr><td style="text-align: right">(7, 3)</td><td style="text-align: right">68,938,800</td><td style="text-align: right">74330.333</td></tr>
+<tr><td style="text-align: right">(8, 1)</td><td style="text-align: right">40,320</td><td style="text-align: right">17.610</td></tr>
+<tr><td style="text-align: right">(8, 2)</td><td style="text-align: right">187,530,840</td><td style="text-align: right">121685.176</td></tr>
+</tbody></table>
+<p>The first thing you will notice is that $(8,3)$ and $(8,4)$ are missing. At our
+current stage, these are taking too long to compute and the values don't really
+add a lot, so let's save them as stretch goals for a later blog post. Moving on,
+a quick sanity check shows that $(k, 1) = k!$. This makes sense, these arrays
+are simply the family of permutation matrices. We can also see $(k, 2)$ and
+$(k, 3)$ match the integer sequences <a rel="noopener nofollow noreferrer" target="_blank" href="https://oeis.org/A001499">A001499</a> and
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://oeis.org/A001501">A001501</a>, respectively. We can be relatively
+convinced that the code we have seen above is computing the desired values. At
+current, this is as far as we can get within a reasonable time. There is just
+not enough juice in our computer to get us any further using the current
+methods.</p>
+<h2 id="what-next">What next?</h2>
+<p>In the coming blog posts, I plan to improve on these methods. We will see that
+we can compute these values using less direct techniques that exploit symmetries
+and other structural properties of our objects. We will also utilise techniques
+that will rely on our computer architecture, using operations that are fast
+compared to the operations seen so far. We will also discuss the role that
+precomputation has to play in combinatorial enumeration and how, with some
+simple tricks, we can restrict the branching factor of a search, reducing the
+costs even further. We will also talk about notions of similarity, observing how
+they factor into our searches.</p>
+<p>The code developed in this post is available at my GitHub repository,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/orthosquare/enumeration1">enumeration1</a>. Happy counting.</p>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+</script>
+
+        </div>
+        
+        
+      </div>
+    </div>
+  </main><div class="container">
+    <div class="row justify-content-center mt-3 mb-4">
+      <div class="col-11 col-lg-10 col-xxl-9"></div>
+    </div>
+  </div><footer class="container-fluid mt-auto">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="row pt-3 pb-4 border-top">
+          <div class="col-12 col-md-6 mb-2 mb-md-0 text-center text-md-start">
+            <small class="text-secondary">
+              © 2025
+              <a 
+                href="#"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none"
+              >
+                Michael Gill&period;
+              </a>
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/"
+                data-bs-toggle="tooltip"
+                data-bs-title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author."
+                class="text-secondary text-decoration-none"
+              >
+                Some rights reserved.
+              </a>
+            </small>
+          </div>
+          <div class="col-12 col-md-6 text-center text-md-end">
+            <small class="text-secondary">
+              Powered by
+              <a 
+                href="https://www.getzola.org/"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none"
+              >
+                Zola
+              </a>
+              with
+              <a 
+                href="https://github.com/gersonbdev/ataraxia-zola"
+                target="_blank" rel="noopener noreferrer"
+                class="text-decoration-none"
+              >
+                Ataraxia
+              </a>
+              theme.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+    <div class="offcanvas-body p-0">
+      <div class="sidebar container-fluid vh-100">
+        <div class="row h-100">
+          <div
+            class="col mh-100 px-0 overflow-auto"
+          >
+            <aside class="d-flex flex-column justify-content-between h-100">
+              <div class="mb-4 pt-5 px-3 text-center">
+                <div class="sidebar-avatar mb-2 mx-auto border border-3 rounded-circle">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+    <img
+      src="https://orthosquare.github.io/images/avatar.jpg"
+      alt="Michael Gill"
+      class="img-fluid"
+    >
+  </a>
+                </div>
+                <div>
+                  <a
+                    href="https://orthosquare.github.io"
+                    class="sidebar-title fs-5 fw-bold text-decoration-none"
+                  >
+                    An Orthgonal Square
+                  </a>
+                </div>
+              </div>
+
+              <div class="sidebar-nav list-group my-auto rounded-0 text-start"><a
+        href="https://orthosquare.github.io/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="Home"
+      >
+        <span class="sidebar-nav-icon bi bi-house ms-2 me-1 fs-4"></span>
+        <span class="sidebar-nav-text">Home</span>
+      </a><a
+        href="https://orthosquare.github.io/blog/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="Blog"
+      >
+        <span class="sidebar-nav-icon bi bi-file-earmark-text ms-2 me-1 fs-4"></span>
+        <span class="sidebar-nav-text">Blog</span>
+      </a><a
+        href="https://orthosquare.github.io/about/"
+        class="sidebar-nav-item list-group-item list-group-item-action border border-0"
+        data-bs-toggle="tooltip" data-bs-title="About"
+      >
+        <span class="sidebar-nav-icon bi bi-file-earmark-person ms-2 me-1 fs-4"></span>
+        <span class="sidebar-nav-text">About</span>
+      </a></div>
+
+              <div class="sidebar-social mt-4 pb-4 px-3">
+                <div class="container-fluid">
+                  <div class="row justify-content-center">
+                    <div class="col-auto px-2">
+        <a
+          href="mailto:michael.gill1@monash.edu"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='Email'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-envelope-fill"></span>
+        </a>
+      </div><div class="col-auto px-2">
+        <a
+          href="https://github.com/orthosquare"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='GitHub'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-github"></span>
+        </a>
+      </div><div class="col-auto px-2">
+        <a
+          href="https://twitter.com/orthosq"
+          target="_blank" rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-title='Twitter'
+          class="text-decoration-none"
+        >
+          <span class="bi bi-twitter"></span>
+        </a>
+      </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">
+          Search
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div
+          id="searchInput" role="search" 
+          class="d-flex mb-3 border rounded-5 bg-white"
+        >
+          <input
+            id="search" type="search"
+            class="form-control border border-0 rounded-5 rounded-end"
+            placeholder="Search"
+            aria-label="Search"
+          >
+          <div class="rounded-5 rounded-start py-2 ps-2 pe-3">
+            <span class="bi bi-search"></span>
+          </div>
+        </div>
+        <div class="search-results">
+          <div class="search-results__items">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://orthosquare.github.io/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    const myModal = document.getElementById('searchModal');
+    const myInput = document.getElementById('searchInput');
+
+    myModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+    });
+  </script>
+  <script src="https://orthosquare.github.io/elasticlunr.min.js"></script>
+  <script src="https://orthosquare.github.io/search_index.en.js"></script><script src="https://orthosquare.github.io/assets/js/search/search.js"></script>
+</body>
+</html>
